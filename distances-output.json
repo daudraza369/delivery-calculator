@@ -1,0 +1,454 @@
+{
+  "Al Rawabi": {
+    "km": 1.4,
+    "fee": 15
+  },
+  "Al Nahdah": {
+    "km": 9.5,
+    "fee": 20
+  },
+  "Al Rimal": {
+    "km": 24.1,
+    "fee": 40
+  },
+  "Al Rayyan": {
+    "km": 2.8,
+    "fee": 15
+  },
+  "Al Nadhim": {
+    "km": null,
+    "fee": 15
+  },
+  "Al Manar": {
+    "km": 4.4,
+    "fee": 15
+  },
+  "Al Yarmouk": {
+    "km": 16.3,
+    "fee": 35
+  },
+  "Ishbiliyah": {
+    "km": 14.4,
+    "fee": 30
+  },
+  "Al Rawdah": {
+    "km": 4.8,
+    "fee": 15
+  },
+  "Al Hamra": {
+    "km": 12.8,
+    "fee": 30
+  },
+  "Granada": {
+    "km": 14.9,
+    "fee": 30
+  },
+  "Al Naseem East": {
+    "km": 5.9,
+    "fee": 20
+  },
+  "Al Naseem West": {
+    "km": 5.9,
+    "fee": 20
+  },
+  "Al Salam": {
+    "km": 5.3,
+    "fee": 20
+  },
+  "Al Khaleej": {
+    "km": 12.6,
+    "fee": 30
+  },
+  "Al Andalus": {
+    "km": 7.3,
+    "fee": 20
+  },
+  "King Faisal": {
+    "km": 10,
+    "fee": 20
+  },
+  "King Abdullah": {
+    "km": 11.5,
+    "fee": 30
+  },
+  "Al Quds": {
+    "km": 10,
+    "fee": 20
+  },
+  "Al Falah": {
+    "km": 18.3,
+    "fee": 35
+  },
+  "Ash Shuhada": {
+    "km": 6.8,
+    "fee": 20
+  },
+  "Al Qadisiyah": {
+    "km": 18.4,
+    "fee": 35
+  },
+  "Al Munsiyah": {
+    "km": null,
+    "fee": 20
+  },
+  "Al Sharafeyyah": {
+    "km": null,
+    "fee": 20
+  },
+  "Al Rabwah": {
+    "km": 5.4,
+    "fee": 20
+  },
+  "Olaya": {
+    "km": 14.5,
+    "fee": 30
+  },
+  "Al Malaz": {
+    "km": 10.2,
+    "fee": 30
+  },
+  "Al Murabba": {
+    "km": 12,
+    "fee": 30
+  },
+  "Al Sulimaniyah": {
+    "km": null,
+    "fee": 30
+  },
+  "Al Wizarat": {
+    "km": 10.7,
+    "fee": 30
+  },
+  "Al Faruq": {
+    "km": 6.8,
+    "fee": 20
+  },
+  "King AbdulAziz": {
+    "km": 12.8,
+    "fee": 30
+  },
+  "Al Safa": {
+    "km": 12.3,
+    "fee": 30
+  },
+  "Al Faisaliyah": {
+    "km": 14.1,
+    "fee": 30
+  },
+  "Al Sulay": {
+    "km": 7.9,
+    "fee": 20
+  },
+  "Qurtubah": {
+    "km": 18.8,
+    "fee": 35
+  },
+  "Al Marwah": {
+    "km": 6.1,
+    "fee": 20
+  },
+  "Al Mursalat": {
+    "km": 14.9,
+    "fee": 30
+  },
+  "Jarir": {
+    "km": 5.9,
+    "fee": 20
+  },
+  "Al Zahra": {
+    "km": 12,
+    "fee": 30
+  },
+  "Al Mishal": {
+    "km": 29.2,
+    "fee": 45
+  },
+  "Al Safarat": {
+    "km": 22.2,
+    "fee": 40
+  },
+  "Al Fayha": {
+    "km": 2.3,
+    "fee": 15
+  },
+  "Umm Al Hamam East": {
+    "km": null,
+    "fee": 30
+  },
+  "Umm Al Hamam West": {
+    "km": 18.6,
+    "fee": 35
+  },
+  "Al Masani": {
+    "km": 18.7,
+    "fee": 35
+  },
+  "Al Yasmin": {
+    "km": 27,
+    "fee": 45
+  },
+  "Al Nakheel": {
+    "km": 15,
+    "fee": 30
+  },
+  "Hittin": {
+    "km": 26.5,
+    "fee": 45
+  },
+  "Al Rahmaniyah": {
+    "km": 17.4,
+    "fee": 35
+  },
+  "Al Narjis": {
+    "km": 24.6,
+    "fee": 40
+  },
+  "Al Maather": {
+    "km": null,
+    "fee": 35
+  },
+  "Al Sahafa": {
+    "km": null,
+    "fee": 35
+  },
+  "Al Aqiq": {
+    "km": 24,
+    "fee": 40
+  },
+  "Al Muruj": {
+    "km": 20.4,
+    "fee": 40
+  },
+  "Al Mansourah": {
+    "km": null,
+    "fee": 35
+  },
+  "Al Muhamadiyyah": {
+    "km": null,
+    "fee": 35
+  },
+  "Al Wadi": {
+    "km": 19,
+    "fee": 35
+  },
+  "Al Woroud": {
+    "km": 16.3,
+    "fee": 35
+  },
+  "Al Ghadir": {
+    "km": 21.3,
+    "fee": 40
+  },
+  "Al Urayja": {
+    "km": 29.6,
+    "fee": 45
+  },
+  "Al Urayja West": {
+    "km": null,
+    "fee": 35
+  },
+  "Shubra": {
+    "km": 23.9,
+    "fee": 40
+  },
+  "Dhahrat Laban": {
+    "km": 32.7,
+    "fee": 45
+  },
+  "Al Masif": {
+    "km": 17.9,
+    "fee": 35
+  },
+  "Al Thumama": {
+    "km": 22.7,
+    "fee": 40
+  },
+  "Diriyah": {
+    "km": 55.2,
+    "fee": 40
+  },
+  "KAFD": {
+    "km": 22.3,
+    "fee": 40
+  },
+  "Al Qirawan": {
+    "km": 40.2,
+    "fee": 40
+  },
+  "Al Janadriyah": {
+    "km": 38.6,
+    "fee": 45
+  },
+  "Al Hazm": {
+    "km": 28.1,
+    "fee": 45
+  },
+  "Al Dar Al Baida": {
+    "km": 14.5,
+    "fee": 30
+  },
+  "Irqah": {
+    "km": 27.6,
+    "fee": 45
+  },
+  "Tuwaiq": {
+    "km": 34.4,
+    "fee": 45
+  },
+  "Al Badiah": {
+    "km": 23.6,
+    "fee": 40
+  },
+  "Al Suwaidi": {
+    "km": 21.5,
+    "fee": 40
+  },
+  "Sultanah": {
+    "km": 19,
+    "fee": 35
+  },
+  "Namar": {
+    "km": 15.3,
+    "fee": 35
+  },
+  "Al Aziziyah": {
+    "km": 15.8,
+    "fee": 35
+  },
+  "Al Manakh": {
+    "km": 12.6,
+    "fee": 30
+  },
+  "Manfuhah": {
+    "km": 16.7,
+    "fee": 35
+  },
+  "Al Batha": {
+    "km": 13.6,
+    "fee": 30
+  },
+  "Ad Dirah": {
+    "km": 14,
+    "fee": 30
+  },
+  "Utaiqah": {
+    "km": null,
+    "fee": 40
+  },
+  "Al Bujairi": {
+    "km": null,
+    "fee": 40
+  },
+  "Al Khalideya": {
+    "km": null,
+    "fee": 40
+  },
+  "Al Khuzama": {
+    "km": 26.7,
+    "fee": 45
+  },
+  "Al Jazirah": {
+    "km": 4.3,
+    "fee": 15
+  },
+  "Al Raid": {
+    "km": 20.9,
+    "fee": 40
+  },
+  "Al Rafiah": {
+    "km": 16,
+    "fee": 35
+  },
+  "As Saadah": {
+    "km": null,
+    "fee": 40
+  },
+  "As Salhiyah": {
+    "km": 11.4,
+    "fee": 30
+  },
+  "Al Sinaiyah": {
+    "km": 21.5,
+    "fee": 40
+  },
+  "Al Mutamarat": {
+    "km": 14.3,
+    "fee": 30
+  },
+  "Al Maizilah": {
+    "km": null,
+    "fee": 40
+  },
+  "Al Mughrizat": {
+    "km": null,
+    "fee": 40
+  },
+  "Al Maather North": {
+    "km": null,
+    "fee": 40
+  },
+  "An Nada": {
+    "km": 21.5,
+    "fee": 40
+  },
+  "An Nafal": {
+    "km": 20.1,
+    "fee": 40
+  },
+  "An Namudhajiyah": {
+    "km": 14,
+    "fee": 30
+  },
+  "Al Hada": {
+    "km": 21.5,
+    "fee": 40
+  },
+  "Al Wahah": {
+    "km": 11.9,
+    "fee": 30
+  },
+  "Al Wisham": {
+    "km": 14.6,
+    "fee": 30
+  },
+  "Al Yamamah": {
+    "km": 17.7,
+    "fee": 35
+  },
+  "Umm Salim": {
+    "km": 15.2,
+    "fee": 35
+  },
+  "Salah Ad Din": {
+    "km": 13.4,
+    "fee": 30
+  },
+  "Ghubairah": {
+    "km": null,
+    "fee": 40
+  },
+  "Al Izdihar": {
+    "km": 15.7,
+    "fee": 35
+  },
+  "Al Iskan": {
+    "km": 18.6,
+    "fee": 35
+  },
+  "Al Awali": {
+    "km": 12.3,
+    "fee": 30
+  },
+  "King Fahd": {
+    "km": 14.9,
+    "fee": 30
+  },
+  "Al Taawun": {
+    "km": 15.1,
+    "fee": 35
+  },
+  "Al Malqa": {
+    "km": 3.2,
+    "fee": 15
+  }
+}

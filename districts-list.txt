@@ -1,0 +1,143 @@
+# Riyadh Districts – District Flowers Delivery Zones
+# All districts from config.js, grouped by delivery fee and distance from Al Zoubair Ibn Al Awwam, Ar Rawabi
+
+================================================================================
+15 SAR (0–5 km)
+================================================================================
+Al Rawabi - 1.4 km - 15 SAR
+Al Nahdah - 9.5 km - 15 SAR
+Al Rimal - 2.5 km - 15 SAR
+Al Rayyan - 2.8 km - 15 SAR
+Al Nadhim - ~2.5 km (est.) - 15 SAR
+Al Manar - 4.4 km - 15 SAR
+
+================================================================================
+20 SAR (6–10 km)
+================================================================================
+Al Yarmouk - 16.3 km - 20 SAR
+Ishbiliyah - 14.4 km - 20 SAR
+Al Rawdah - 4.8 km - 20 SAR
+Al Hamra - 12.8 km - 20 SAR
+Granada - 14.9 km - 20 SAR
+Al Naseem East - 5.9 km - 20 SAR
+Al Naseem West - 5.9 km - 20 SAR
+Al Salam - 5.3 km - 20 SAR
+Al Khaleej - 12.6 km - 20 SAR
+Al Andalus - 7.3 km - 20 SAR
+King Faisal - 10 km - 20 SAR
+King Abdullah - 11.5 km - 20 SAR
+Al Quds - 10 km - 20 SAR
+Al Falah - 18.3 km - 20 SAR
+Ash Shuhada - 6.8 km - 20 SAR
+Al Qadisiyah - 18.4 km - 20 SAR
+Al Munsiyah - ~8 km (est.) - 20 SAR
+Al Sharafeyyah - ~8 km (est.) - 20 SAR
+
+================================================================================
+30 SAR (11–15 km)
+================================================================================
+Al Rabwah - 5.4 km - 30 SAR
+Olaya - 14.5 km - 30 SAR
+Al Malaz - 10.2 km - 30 SAR
+Al Murabba - 12 km - 30 SAR
+Al Sulimaniyah - ~13 km (est.) - 30 SAR
+Al Wizarat - 10.7 km - 30 SAR
+Al Faruq - 6.8 km - 30 SAR
+King AbdulAziz - 12.8 km - 30 SAR
+Al Safa - 12.3 km - 30 SAR
+Al Faisaliyah - 14.1 km - 30 SAR
+Al Sulay - 7.9 km - 30 SAR
+Qurtubah - 18.8 km - 30 SAR
+Al Marwah - 6.1 km - 30 SAR
+Al Mursalat - 14.9 km - 30 SAR
+Jarir - 5.9 km - 30 SAR
+Al Zahra - 12 km - 30 SAR
+Al Mishal - 29.2 km - 30 SAR
+Al Safarat - 22.2 km - 30 SAR
+Al Fayha - 2.3 km - 30 SAR
+Umm Al Hamam East - ~13 km (est.) - 30 SAR
+Umm Al Hamam West - 18.6 km - 30 SAR
+Al Masani - 18.7 km - 30 SAR
+
+================================================================================
+35 SAR (16–20 km)
+================================================================================
+Al Yasmin - 27 km - 35 SAR
+Al Nakheel - 15 km - 35 SAR
+Hittin - 26.5 km - 35 SAR
+Al Rahmaniyah - 17.4 km - 35 SAR
+Al Narjis - 24.6 km - 35 SAR
+Al Maather - ~18 km (est.) - 35 SAR
+Al Sahafa - ~18 km (est.) - 35 SAR
+Al Aqiq - 24 km - 35 SAR
+Al Muruj - 20.4 km - 35 SAR
+Al Mansourah - ~18 km (est.) - 35 SAR
+Al Muhamadiyyah - ~18 km (est.) - 35 SAR
+Al Wadi - 19 km - 35 SAR
+Al Woroud - 16.3 km - 35 SAR
+Al Ghadir - 21.3 km - 35 SAR
+Al Urayja - 29.6 km - 35 SAR
+Al Urayja West - ~18 km (est.) - 35 SAR
+Shubra - 23.9 km - 35 SAR
+Dhahrat Laban - 32.7 km - 35 SAR
+Al Masif - 17.9 km - 35 SAR
+
+================================================================================
+40 SAR (21–25 km)
+================================================================================
+Al Thumama - 22.7 km - 40 SAR
+Diriyah - 55.2 km - 40 SAR
+KAFD - 22.3 km - 40 SAR
+Al Qirawan - 40.2 km - 40 SAR
+Al Janadriyah - 38.6 km - 40 SAR
+Al Hazm - 28.1 km - 40 SAR
+Al Dar Al Baida - 14.5 km - 40 SAR
+Irqah - 27.6 km - 40 SAR
+Tuwaiq - 34.4 km - 40 SAR
+Al Badiah - 23.6 km - 40 SAR
+Al Suwaidi - 21.5 km - 40 SAR
+Sultanah - 19 km - 40 SAR
+Namar - 15.3 km - 40 SAR
+Al Aziziyah - 15.8 km - 40 SAR
+Al Manakh - 12.6 km - 40 SAR
+Manfuhah - 16.7 km - 40 SAR
+Al Batha - 13.6 km - 40 SAR
+Ad Dirah - 14 km - 40 SAR
+Utaiqah - ~23 km (est.) - 40 SAR
+Al Bujairi - ~23 km (est.) - 40 SAR
+Al Khalideya - ~23 km (est.) - 40 SAR
+Al Khuzama - 26.7 km - 40 SAR
+Al Jazirah - 4.3 km - 40 SAR
+Al Raid - 20.9 km - 40 SAR
+Al Rafiah - 16 km - 40 SAR
+As Saadah - ~23 km (est.) - 40 SAR
+As Salhiyah - 11.4 km - 40 SAR
+Al Sinaiyah - 21.5 km - 40 SAR
+Al Mutamarat - 14.3 km - 40 SAR
+Al Maizilah - ~23 km (est.) - 40 SAR
+Al Mughrizat - ~23 km (est.) - 40 SAR
+Al Maather North - ~23 km (est.) - 40 SAR
+An Nada - 21.5 km - 40 SAR
+An Nafal - 20.1 km - 40 SAR
+An Namudhajiyah - 14 km - 40 SAR
+Al Hada - 21.5 km - 40 SAR
+Al Wahah - 11.9 km - 40 SAR
+Al Wisham - 14.6 km - 40 SAR
+Al Yamamah - 17.7 km - 40 SAR
+Umm Salim - 15.2 km - 40 SAR
+Salah Ad Din - 13.4 km - 40 SAR
+Ghubairah - ~23 km (est.) - 40 SAR
+Al Izdihar - 15.7 km - 40 SAR
+Al Iskan - 18.6 km - 40 SAR
+Al Awali - 12.3 km - 40 SAR
+King Fahd - 14.9 km - 40 SAR
+Al Taawun - 15.1 km - 40 SAR
+
+================================================================================
+45 SAR (26–40 km)
+================================================================================
+Al Malqa - 30.6 km - 45 SAR
+
+================================================================================
+TOTAL: 106 districts
+================================================================================

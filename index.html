@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>التحقق من التوصيل | District Flowers</title>
+  <meta name="description" content="احجز توصيل الورد في الرياض – District Flowers. تحقق من منطقتك واحصل على رسوم التوصيل."/>
+  <meta property="og:title" content="District Flowers – توصيل الورد الرياض"/>
+  <meta property="og:description" content="احجز توصيل الورد في الرياض. تحقق من منطقتك واحصل على رسوم التوصيل."/>
+  <meta property="og:type" content="website"/>
+  <link rel="icon" href="DF — Favicon.png" type="image/png"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <style>
+    @font-face {
+      font-family: "Kalice";
+      src: url("Kalice-Regular.woff2") format("woff2"), url("Kalice-Regular.woff") format("woff");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#7A9E7E",
+            "primary-dark": "#5D7A5D",
+            logo: "#7B6B9E",
+            "logo-dark": "#5D4A7A",
+            "accent-yellow": "#FCF9E8",
+            "background-light": "#F9F7F2",
+            "background-dark": "#1A1C1A",
+            "surface-light": "#FFFFFF",
+            "surface-dark": "#262926",
+            "text-main": "#333333",
+            "text-muted": "#888888",
+            "border-color": "#E5E5E5",
+            "btn-lavender": "#E6E1F0",
+            "btn-lavender-text": "#6B5B95",
+          },
+          fontFamily: {
+            display: ["Kalice", "serif"],
+            body: ["Kalice", "system-ui", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            xl: "1rem",
+            "2xl": "1.5rem",
+            "3xl": "2rem",
+          },
+          boxShadow: {
+            soft: "0 10px 40px -10px rgba(122, 158, 126, 0.2)",
+            card: "0 4px 25px rgba(0, 0, 0, 0.04)",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .floating-input {
+      border: 1px solid #E5E5E5;
+      border-radius: 0.75rem;
+      padding: 1rem 1rem;
+      background: #fff;
+      min-height: 3.25rem;
+      transition: border-color 0.2s;
+      width: 100%;
+      display: block;
+    }
+    .dark .floating-input { background: #262926; border-color: #404040; }
+    .floating-input:focus {
+      box-shadow: none;
+      border-color: #7A9E7E;
+      outline: none;
+    }
+    select.floating-input { padding-inline-end: 2.5rem; appearance: none; }
+    .floating-label {
+      position: absolute;
+      transition: all 0.2s ease-in-out;
+      pointer-events: none;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: #9CA3AF;
+    }
+    [dir="rtl"] .floating-label { left: auto; right: 1rem; }
+    .floating-input:placeholder-shown ~ .floating-label,
+    .floating-input.feed-placeholder ~ .floating-label,
+    select.floating-input:not(.has-value) ~ .floating-label {
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+    }
+    .floating-input:focus ~ .floating-label,
+    .floating-input:not(:placeholder-shown) ~ .floating-label,
+    .floating-input:not(.feed-placeholder) ~ .floating-label,
+    select.floating-input.has-value ~ .floating-label {
+      top: 0;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      color: #7A9E7E;
+      background: #fff;
+      padding: 0 0.35rem;
+      margin-left: -0.35rem;
+    }
+    [dir="rtl"] .floating-input:focus ~ .floating-label,
+    [dir="rtl"] .floating-input:not(:placeholder-shown) ~ .floating-label,
+    [dir="rtl"] .floating-input:not(.feed-placeholder) ~ .floating-label,
+    [dir="rtl"] select.floating-input.has-value ~ .floating-label {
+      margin-left: 0;
+      margin-right: -0.35rem;
+    }
+    .dark select.floating-input.has-value ~ .floating-label,
+    .dark .floating-input:focus ~ .floating-label,
+    .dark .floating-input:not(:placeholder-shown) ~ .floating-label,
+    .dark .floating-input:not(.feed-placeholder) ~ .floating-label { background: #262926; }
+    .floating-input.outside ~ .floating-label { color: #b55454; }
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: invert(0.5);
+    }
+    .place-dropdown {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      margin-top: -1px;
+      background: #fff;
+      border: 1px solid #E5E5E5;
+      border-top: 0;
+      border-radius: 0 0 0.75rem 0.75rem;
+      max-height: min(200px, 50vh);
+      overflow-y: auto;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+      z-index: 20;
+      -webkit-overflow-scrolling: touch;
+    }
+    .place-dropdown.hidden { display: none; }
+    [dir="rtl"] .material-symbols-outlined.rtl-flip { transform: scaleX(-1); }
+    .place-item {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #f0f0f0;
+      font-family: "Lato", sans-serif;
+    }
+    .place-item:last-child { border-bottom: 0; }
+    .place-item:hover { background: #F9F7F2; }
+    .place-item.loading { color: #9CA3AF; cursor: wait; animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: 0.6; } }
+    body { min-height: 100dvh; min-height: 100vh; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); overflow-x: hidden; }
+    @media (min-width: 640px) { body { min-height: 100vh; } }
+    @media (max-width: 383px) {
+      .floating-input { min-height: 2.75rem; padding: 0.75rem 1rem; }
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body antialiased min-h-screen transition-colors duration-300">
+  <div class="w-full max-w-md mx-auto min-h-screen relative px-3 sm:px-6 pb-10 sm:pb-12 min-w-0">
+    <header class="pt-4 sm:pt-6 pb-2 flex justify-between items-center">
+      <div class="w-11 sm:w-10 flex justify-start shrink-0">
+        <a id="backBtn" class="text-text-muted hover:text-primary transition hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] -m-2" href="#" aria-label="Back">
+          <span class="material-symbols-outlined text-2xl">arrow_back</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-1 sm:gap-2">
+        <button type="button" id="copyLinkBtn" class="text-text-muted hover:text-primary transition rounded inline-flex items-center justify-center min-w-[44px] min-h-[44px] p-2" title="Copy form link" aria-label="Copy link">
+          <span class="material-symbols-outlined text-xl">link</span>
+        </button>
+        <button type="button" id="langToggle" class="text-xs font-medium tracking-wide text-text-muted hover:text-primary transition uppercase border-b border-transparent hover:border-primary min-h-[44px] min-w-[44px] inline-flex items-center justify-center px-2 py-2">
+          عربي / EN
+        </button>
+      </div>
+    </header>
+
+    <main class="px-0">
+      <div class="flex flex-col items-center justify-center mb-6 sm:mb-8">
+        <img src="DF — Favicon.png" alt="District Flowers" class="w-14 h-14 sm:w-16 sm:h-16 object-contain mb-3 sm:mb-4" />
+        <h1 class="text-2xl sm:text-3xl font-display font-medium text-text-main dark:text-white text-center px-2">
+          District <span class="italic text-logo">Flowers</span>
+        </h1>
+        <p class="text-xs text-text-muted mt-1 uppercase tracking-widest" data-ar="توصيل مميز" data-en="Premium Delivery">توصيل مميز</p>
+      </div>
+
+      <div class="bg-surface-light dark:bg-surface-dark rounded-2xl sm:rounded-3xl shadow-card p-3 sm:p-6 md:p-8 mb-4 sm:mb-8">
+        <h2 class="font-display text-lg sm:text-xl text-text-main dark:text-white mb-4 sm:mb-6" data-ar="تفاصيل التوصيل" data-en="Delivery Details">تفاصيل التوصيل</h2>
+
+        <button type="button" id="useLocationBtn" class="w-full flex items-center justify-center gap-2 bg-logo hover:bg-logo-dark text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 mb-4 sm:mb-6 group min-h-[48px] touch-manipulation">
+          <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">my_location</span>
+          <span class="text-sm tracking-wide" data-ar="استخدم موقعي الحالي" data-en="Use my current location">استخدم موقعي الحالي</span>
+        </button>
+
+        <div class="relative mb-2">
+          <div class="place-search-wrap relative">
+            <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent feed-placeholder" id="placeSearch" type="text" placeholder=" " autocomplete="off" data-placeholder-ar="اكتب المنطقة أو العنوان…" data-placeholder-en="Type area or address…"/>
+            <label class="floating-label absolute left-0 text-text-muted top-0" for="placeSearch" data-ar="المنطقة أو الحي" data-en="Area or District">المنطقة أو الحي</label>
+            <div class="place-dropdown hidden" id="placeDropdown"></div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 text-xs text-text-muted mb-4 sm:mb-6 px-1 min-w-0" id="feeRow">
+          <span class="flex items-center gap-1 min-w-0 flex-1" id="distSpan">
+            <span class="material-symbols-outlined text-sm shrink-0">straighten</span>
+            <span id="distText" class="truncate" data-ar="اكتب منطقتك أو استخدم الموقع" data-en="Type your area or use location">اكتب منطقتك أو استخدم الموقع</span>
+          </span>
+          <span class="font-bold text-primary text-sm shrink-0" id="feeText">—</span>
+        </div>
+
+        <div class="bg-accent-yellow dark:bg-yellow-900/10 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 border border-yellow-100 dark:border-yellow-900/20 flex gap-2 sm:gap-3 items-start">
+          <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-500 text-lg mt-0.5">info</span>
+          <div>
+            <p class="text-xs text-yellow-800 dark:text-yellow-200 leading-relaxed font-medium" data-ar="الطلبات بعد ٤ عصراً تُجدول لليوم التالي" data-en="Orders placed after 4:00 PM will be scheduled for the next day delivery.">الطلبات بعد ٤ عصراً تُجدول لليوم التالي</p>
+          </div>
+        </div>
+
+        <div class="space-y-4 sm:space-y-5">
+          <div class="relative">
+            <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent feed-placeholder" id="deliveryDate" type="date" placeholder=" "/>
+            <label class="floating-label absolute left-0 text-text-muted top-0" for="deliveryDate" data-ar="تاريخ التوصيل" data-en="Delivery Date">تاريخ التوصيل</label>
+          </div>
+
+          <div class="relative">
+            <select class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary bg-transparent appearance-none pe-8" id="timeSlot">
+              <option value="" id="timeSlotPlaceholder">—</option>
+            </select>
+            <label class="floating-label absolute left-0 text-text-muted top-0" for="timeSlot" data-ar="الوقت المفضل" data-en="Preferred Time">الوقت المفضل</label>
+            <span class="material-symbols-outlined absolute end-0 top-3 text-text-muted pointer-events-none">expand_more</span>
+          </div>
+
+          <div class="relative">
+            <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent" id="name" type="text" placeholder=" "/>
+            <label class="floating-label absolute left-0 text-text-muted top-0" for="name" data-ar="اسمك" data-en="Your Name">اسمك</label>
+          </div>
+
+          <div class="relative">
+            <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent" id="phone" type="tel" placeholder=" " data-placeholder-ar="05xxxxxxxx" data-placeholder-en="05xxxxxxxx"/>
+            <label class="floating-label absolute left-0 text-text-muted top-0" for="phone" data-ar="رقم الواتساب" data-en="WhatsApp Number">رقم الواتساب</label>
+          </div>
+
+          <div class="relative">
+            <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent" id="address" type="text" placeholder=" " data-placeholder-ar="الشارع، المبنى، الطابق" data-placeholder-en="Street, Building, Flat"/>
+            <label class="floating-label absolute left-0 text-text-muted top-0" for="address" data-ar="الشارع، المبنى، الطابق" data-en="Street, Building, Flat">الشارع، المبنى، الطابق</label>
+          </div>
+        </div>
+
+        <div class="mt-6 sm:mt-8">
+          <button type="button" id="submitBtn" disabled class="w-full bg-logo hover:bg-logo-dark text-white font-bold py-3 sm:py-4 rounded-xl shadow-soft flex items-center justify-center gap-2 transform transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-logo min-h-[48px] text-sm sm:text-base touch-manipulation">
+            <span class="font-display tracking-wide" data-ar="تأكيد التوصيل" data-en="Confirm Delivery">تأكيد التوصيل</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    const config = typeof DELIVERY_CONFIG !== 'undefined' ? DELIVERY_CONFIG : {
+      whatsappNumber: "966500000000",
+      hubCoordinates: { lat: 24.695074, lng: 46.792129 },
+      roadFactor: 1.3,
+      riyadhViewbox: "46.4,24.4,47.2,25.4",
+      timeSlots: ["10:00 AM – 1:00 PM", "1:00 PM – 4:00 PM", "4:00 PM – 7:00 PM"],
+      zones: [{ fee: 15, range: "0–5 km", neighborhoods: ["Al Rawabi"] }, { fee: 20, range: "6–10 km", neighborhoods: ["Al Yarmouk"] }],
+      backUrl: "",
+    };
+
+    const T = {
+      ar: { placeholder: 'اكتب منطقتك أو استخدم الموقع', outside: 'خارج منطقة التوصيل. تواصل معنا للخيارات.', searching: 'جاري البحث…', noPlaces: 'ما فيه نتايج. جرّب بحث ثاني.', useLocation: 'استخدم موقعي الحالي', fromHub: 'من الروابي' },
+      en: { placeholder: 'Type your area or use location', outside: 'Outside delivery zone. Contact us for options.', searching: 'Searching…', noPlaces: 'No places found. Try a different search.', useLocation: 'Use my current location', fromHub: 'from Al Rawabi' },
+    };
+
+    const hub = config.hubCoordinates || { lat: 24.695074, lng: 46.792129 };
+    const roadFactor = config.roadFactor || 1.3;
+    const riyadhViewbox = config.riyadhViewbox || '46.4,24.4,47.2,25.4';
+
+    let lang = 'ar';
+    let selectedZone = null;
+    let lastKm = null;
+
+    function t(key) { return T[lang][key] || T.en[key]; }
+
+    function haversine(lat1, lng1, lat2, lng2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLng = (lng2 - lng1) * Math.PI / 180;
+      const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLng/2)**2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+
+    function distanceToZone(km) {
+      if (km <= 5) return { fee: 15, range: "0–5 km" };
+      if (km <= 10) return { fee: 20, range: "6–10 km" };
+      if (km <= 15) return { fee: 30, range: "11–15 km" };
+      if (km <= 20) return { fee: 35, range: "16–20 km" };
+      if (km <= 25) return { fee: 40, range: "21–25 km" };
+      if (km <= 40) return { fee: 45, range: "26–40 km" };
+      return null;
+    }
+
+    function setLang(l) {
+      lang = l;
+      document.documentElement.lang = l;
+      document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+        if (el.dataset.ar && el.dataset.en) el.textContent = el.dataset[l];
+      });
+      document.querySelectorAll('[data-placeholder-ar][data-placeholder-en]').forEach(el => {
+        el.placeholder = el.dataset['placeholder' + (l === 'ar' ? 'Ar' : 'En')] || ' ';
+      });
+      const ph = document.getElementById('timeSlotPlaceholder');
+      if (ph) ph.textContent = l === 'ar' ? '— اختر الوقت —' : '— Select time —';
+      const ps = document.getElementById('placeSearch');
+      if (ps) ps.placeholder = ' ';
+      updateFeeDisplay();
+      document.getElementById('langToggle').textContent = l === 'ar' ? 'عربي / EN' : 'EN / عربي';
+    }
+
+    function updateFeeDisplay() {
+      const distText = document.getElementById('distText');
+      const feeText = document.getElementById('feeText');
+      const row = document.getElementById('feeRow');
+      if (!selectedZone) {
+        distText.textContent = t('placeholder');
+        feeText.textContent = '—';
+        feeText.classList?.remove('!text-red-600');
+        return;
+      }
+      if (selectedZone.fee === null) {
+        distText.textContent = lastKm != null ? `${Math.round(lastKm * 10) / 10} km ${t('fromHub')}` : t('outside');
+        feeText.textContent = lang === 'ar' ? 'خارج المنطقة' : 'Outside zone';
+        feeText.classList?.add('!text-red-600');
+      } else {
+        const kmStr = lastKm != null ? `${Math.round(lastKm * 10) / 10} km ${t('fromHub')}` : selectedZone.range + ' ' + t('fromHub');
+        distText.textContent = kmStr;
+        feeText.textContent = selectedZone.fee + ' SAR ' + (lang === 'ar' ? 'توصيل' : 'Delivery');
+        feeText.classList?.remove('!text-red-600');
+      }
+    }
+
+    function showFee(zone, zoneForSubmit, km) {
+      selectedZone = zoneForSubmit || zone;
+      lastKm = km != null ? km : null;
+      updateFeeDisplay();
+      updateSubmitButton();
+    }
+
+    function updateSubmitButton() {
+      const zone = selectedZone && selectedZone.fee != null;
+      const date = !!document.getElementById('deliveryDate').value;
+      const time = !!document.getElementById('timeSlot').value;
+      const name = !!document.getElementById('name').value.trim();
+      const phone = !!document.getElementById('phone').value.trim() && isValidPhone(document.getElementById('phone').value.trim());
+      const address = !!document.getElementById('address').value.trim();
+      document.getElementById('submitBtn').disabled = !(zone && date && time && name && phone && address);
+    }
+
+    function getShortPlaceName(item) {
+      if (item.name && item.name.length < 50) return item.name.trim();
+      const parts = (item.display_name || '').split(',').map(p => p.trim());
+      const skip = /^(riyadh|الرياض|saudi arabia|المملكة|\d{5})$/i;
+      const main = parts.find(p => p && !skip.test(p));
+      return main || parts[0] || item.display_name || '';
+    }
+
+    const placeDropdown = document.getElementById('placeDropdown');
+    let searchTimeout = null;
+
+    function setDropdown(items, loading) {
+      placeDropdown.innerHTML = '';
+      placeDropdown.classList.remove('hidden');
+      if (loading) {
+        const li = document.createElement('div');
+        li.className = 'place-item loading';
+        li.textContent = t('searching');
+        placeDropdown.appendChild(li);
+        return;
+      }
+      if (!items || items.length === 0) {
+        const li = document.createElement('div');
+        li.className = 'place-item';
+        li.textContent = t('noPlaces');
+        placeDropdown.appendChild(li);
+        return;
+      }
+      items.forEach((item) => {
+        const shortName = getShortPlaceName(item);
+        const li = document.createElement('div');
+        li.className = 'place-item';
+        li.textContent = shortName;
+        li.dataset.lat = item.lat;
+        li.dataset.lon = item.lon;
+        li.dataset.name = shortName;
+        li.addEventListener('click', () => {
+          const straightKm = haversine(hub.lat, hub.lng, parseFloat(item.lat), parseFloat(item.lon));
+          const km = straightKm * roadFactor;
+          const zone = distanceToZone(km);
+          showFee(zone, zone ? { ...zone, name: shortName } : { fee: null, name: shortName }, km);
+          document.getElementById('placeSearch').value = shortName;
+          document.getElementById('placeSearch').classList.remove('feed-placeholder');
+          placeDropdown.classList.add('hidden');
+          placeDropdown.innerHTML = '';
+          saveForm();
+        });
+        placeDropdown.appendChild(li);
+      });
+    }
+
+    function searchCuratedList(q) {
+      const flat = [];
+      config.zones.forEach(z => z.neighborhoods.forEach(n => flat.push({ name: n, fee: z.fee, range: z.range })));
+      const key = q.toLowerCase().trim();
+      return flat.filter(x => x.name.toLowerCase().includes(key));
+    }
+
+    async function searchPlaces(q) {
+      if (!q || q.length < 2) { placeDropdown.classList.add('hidden'); return; }
+      const curated = searchCuratedList(q);
+      if (curated.length > 0) {
+        const items = curated.slice(0, 8).map(c => ({ isCurated: true, name: c.name, fee: c.fee, range: c.range }));
+        placeDropdown.innerHTML = '';
+        placeDropdown.classList.remove('hidden');
+        items.forEach((c) => {
+          const li = document.createElement('div');
+          li.className = 'place-item';
+          li.textContent = c.name;
+          li.addEventListener('click', () => {
+            const zone = { fee: c.fee, range: c.range, name: c.name };
+            showFee(zone, zone, null);
+            document.getElementById('placeSearch').value = c.name;
+            document.getElementById('placeSearch').classList.remove('feed-placeholder');
+            placeDropdown.classList.add('hidden');
+            placeDropdown.innerHTML = '';
+            saveForm();
+          });
+          placeDropdown.appendChild(li);
+        });
+        return;
+      }
+      const query = q.trim() + ', الرياض, السعودية';
+      setDropdown(null, true);
+      try {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=15&viewbox=${riyadhViewbox}&bounded=1`;
+        const res = await fetch(url, { headers: { 'Accept-Language': lang === 'ar' ? 'ar' : 'en', 'User-Agent': 'DistrictFlowers-DeliveryCalculator/1.0' } });
+        let data = await res.json() || [];
+        const excludeTypes = ['road', 'highway', 'footway'];
+        data = data.filter(item => {
+          const addrType = (item.addresstype || item.type || '').toLowerCase();
+          const cls = (item.class || '').toLowerCase();
+          return !excludeTypes.some(e => addrType.includes(e) || cls.includes(e));
+        });
+        data.sort((a, b) => (b.importance || 0) - (a.importance || 0));
+        data = data.filter((item, i, arr) => {
+          const short = getShortPlaceName(item);
+          const key = short.toLowerCase().trim();
+          const first = arr.findIndex(x => getShortPlaceName(x).toLowerCase().trim() === key);
+          return first === i;
+        });
+        setDropdown(data, false);
+      } catch (e) { setDropdown([], false); }
+    }
+
+    document.getElementById('placeSearch').addEventListener('input', () => {
+      clearTimeout(searchTimeout);
+      const q = document.getElementById('placeSearch').value.trim();
+      if (q.length < 2) {
+        placeDropdown.classList.add('hidden');
+        placeDropdown.innerHTML = '';
+        selectedZone = null;
+        lastKm = null;
+        updateFeeDisplay();
+        updateSubmitButton();
+        return;
+      }
+      searchTimeout = setTimeout(() => searchPlaces(q), 300);
+    });
+
+    document.getElementById('placeSearch').addEventListener('focus', () => {
+      const q = document.getElementById('placeSearch').value.trim();
+      if (q.length >= 2 && placeDropdown.children.length) placeDropdown.classList.remove('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      const wrap = document.querySelector('.place-search-wrap');
+      if (wrap && !wrap.contains(e.target)) placeDropdown.classList.add('hidden');
+    });
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      lang = lang === 'ar' ? 'en' : 'ar';
+      setLang(lang);
+    });
+
+    const backBtn = document.getElementById('backBtn');
+    if (config.backUrl) {
+      backBtn.href = config.backUrl;
+      backBtn.classList.remove('hidden');
+    }
+
+    document.getElementById('copyLinkBtn').addEventListener('click', () => {
+      const url = window.location.href.replace(/\?.*$/, '');
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = document.getElementById('copyLinkBtn');
+        const oldTitle = btn.title;
+        btn.title = lang === 'ar' ? 'تم النسخ!' : 'Copied!';
+        btn.querySelector('span').textContent = 'check';
+        setTimeout(() => {
+          btn.title = oldTitle;
+          btn.querySelector('span').textContent = 'link';
+        }, 1500);
+      });
+    });
+
+    function isValidPhone(val) {
+      const digits = val.replace(/\D/g, '');
+      if (digits.length < 9 || digits.length > 15) return false;
+      const local = digits.replace(/^966/, '');
+      return /^(05|5)\d{8}$/.test(local);
+    }
+
+    document.getElementById('useLocationBtn').addEventListener('click', () => {
+      if (!navigator.geolocation) {
+        alert(lang === 'ar' ? 'المتصفح ما يدعم الموقع. اكتب منطقتك فوق.' : 'Your browser does not support location. Please type your area above.');
+        return;
+      }
+      const btn = document.getElementById('useLocationBtn');
+      btn.disabled = true;
+      btn.querySelector('span:last-child').textContent = '…';
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const straightKm = haversine(hub.lat, hub.lng, pos.coords.latitude, pos.coords.longitude);
+          const km = straightKm * roadFactor;
+          const zone = distanceToZone(km);
+          showFee(zone, zone ? { ...zone, name: lang === 'ar' ? 'الموقع الحالي' : 'Detected location' } : null, km);
+          document.getElementById('placeSearch').value = lang === 'ar' ? 'الموقع الحالي' : 'Detected location';
+          document.getElementById('placeSearch').classList.remove('feed-placeholder');
+          placeDropdown.classList.add('hidden');
+          saveForm();
+          btn.disabled = false;
+          btn.querySelector('span:last-child').textContent = t('useLocation');
+        },
+        () => {
+          alert(lang === 'ar' ? 'ما قدرت أحصل على موقعك. سمح الوصول أو اكتب منطقتك فوق.' : 'Could not get your location. Please allow access or type your area above.');
+          btn.disabled = false;
+          btn.querySelector('span:last-child').textContent = t('useLocation');
+        }
+      );
+    });
+
+    config.timeSlots.forEach(slot => {
+      const opt = document.createElement('option');
+      opt.value = slot;
+      opt.textContent = slot;
+      document.getElementById('timeSlot').appendChild(opt);
+    });
+
+    document.getElementById('timeSlot').addEventListener('change', function() {
+      this.classList.toggle('has-value', !!this.value);
+      saveForm();
+      updateSubmitButton();
+    });
+
+    const STORAGE_KEY = 'df_delivery_form';
+    function saveForm() {
+      try {
+        const data = {
+          area: document.getElementById('placeSearch').value.trim(),
+          date: document.getElementById('deliveryDate').value,
+          time: document.getElementById('timeSlot').value,
+          name: document.getElementById('name').value.trim(),
+          phone: document.getElementById('phone').value.trim(),
+          address: document.getElementById('address').value.trim()
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {}
+    }
+    function restoreForm() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        const today = new Date().toISOString().slice(0, 10);
+        if (data.area) {
+          document.getElementById('placeSearch').value = data.area;
+          document.getElementById('placeSearch').classList.remove('feed-placeholder');
+          const curated = searchCuratedList(data.area);
+          if (curated.length > 0) {
+            const c = curated[0];
+            selectedZone = { fee: c.fee, range: c.range, name: c.name };
+            lastKm = null;
+            updateFeeDisplay();
+          }
+        }
+        if (data.date && data.date >= today) document.getElementById('deliveryDate').value = data.date;
+        if (data.time) {
+          document.getElementById('timeSlot').value = data.time;
+          document.getElementById('timeSlot').classList.add('has-value');
+        }
+        if (data.name) document.getElementById('name').value = data.name;
+        if (data.phone) document.getElementById('phone').value = data.phone;
+        if (data.address) document.getElementById('address').value = data.address;
+      } catch (e) {}
+    }
+    document.getElementById('placeSearch').addEventListener('blur', saveForm);
+    document.getElementById('deliveryDate').addEventListener('change', saveForm);
+    document.getElementById('name').addEventListener('blur', saveForm);
+    document.getElementById('phone').addEventListener('blur', saveForm);
+    document.getElementById('address').addEventListener('blur', saveForm);
+
+    document.getElementById('deliveryDate').min = new Date().toISOString().slice(0, 10);
+    document.getElementById('deliveryDate').addEventListener('input', function() {
+      this.classList.toggle('feed-placeholder', !this.value);
+      updateSubmitButton();
+    });
+    document.getElementById('deliveryDate').addEventListener('change', function() {
+      this.classList.toggle('feed-placeholder', !this.value);
+      updateSubmitButton();
+    });
+    document.getElementById('name').addEventListener('input', updateSubmitButton);
+    document.getElementById('phone').addEventListener('input', updateSubmitButton);
+    document.getElementById('address').addEventListener('input', updateSubmitButton);
+
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      const zone = selectedZone;
+      if (!zone || zone.fee === null) {
+        alert(lang === 'ar' ? 'اكتب منطقتك أو استخدم الموقع' : 'Please type your area or use location.');
+        return;
+      }
+      const date = document.getElementById('deliveryDate').value;
+      const time = document.getElementById('timeSlot').value;
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const areaName = document.getElementById('placeSearch').value.trim() || zone.name;
+
+      const alerts = lang === 'ar' ? { date: 'اختر تاريخ التوصيل', time: 'اختر وقت التوصيل', name: 'اكتب اسمك', phone: 'اكتب رقم الواتساب', address: 'اكتب عنوان التوصيل', phoneInvalid: 'رقم غير صحيح. استخدم 05xxxxxxxx' } : { date: 'Please select a delivery date.', time: 'Please select a time window.', name: 'Please enter your name.', phone: 'Please enter your WhatsApp number.', address: 'Please enter your delivery address.', phoneInvalid: 'Invalid number. Use 05xxxxxxxx' };
+      if (!date) { alert(alerts.date); return; }
+      if (!time) { alert(alerts.time); return; }
+      if (!name) { alert(alerts.name); return; }
+      if (!phone) { alert(alerts.phone); return; }
+      if (!isValidPhone(phone)) { alert(alerts.phoneInvalid); return; }
+      if (!address) { alert(alerts.address); return; }
+
+      const msgEn = `Hi! I'd like to confirm my delivery request:\n\nArea: ${areaName}\nDelivery fee: ${zone.fee} SAR\nDate: ${date}\nTime: ${time}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+      const msgAr = `السلام عليكم، أود تأكيد طلب التوصيل:\n\nالمنطقة: ${areaName}\nرسوم التوصيل: ${zone.fee} ر.س\nالتاريخ: ${date}\nالوقت: ${time}\nالاسم: ${name}\nالواتساب: ${phone}\nالعنوان: ${address}`;
+      const msg = lang === 'ar' ? msgAr : msgEn;
+      window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+
+    setLang('ar');
+    restoreForm();
+    updateSubmitButton();
+  </script>
+</body>
+</html>

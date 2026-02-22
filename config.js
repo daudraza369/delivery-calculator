@@ -1,0 +1,182 @@
+/**
+ * District Flowers - Delivery Calculator Config
+ * Edit zones and neighborhoods here without touching the main HTML
+ * Al Rawabi is the delivery hub (East Riyadh, between Exits 11–12)
+ */
+
+const DELIVERY_CONFIG = {
+  // WhatsApp business number (country code + number, no + or spaces)
+  whatsappNumber: "923168336803",
+  // Back button URL (e.g. your main site or cart). Leave empty to hide.
+  backUrl: "",
+
+  // District Flowers Al Zoubair Ibn Al Awwam, Ar Rawabi – for distance calculation
+  hubCoordinates: { lat: 24.695074, lng: 46.792129 },
+  // Road distance factor (straight-line × factor ≈ driving distance in city)
+  roadFactor: 1.3,
+  // Riyadh bounding box for Nominatim (lon1,lat1,lon2,lat2) – restricts search to Riyadh
+  riyadhViewbox: "46.4,24.4,47.2,25.4",
+
+  timeSlots: [
+    "10:00 AM – 1:00 PM",
+    "1:00 PM – 4:00 PM",
+    "4:00 PM – 7:00 PM",
+  ],
+
+  // Zones: fee in SAR, neighborhoods in that zone (ordered by approximate distance from Al Rawabi)
+  zones: [
+    {
+      fee: 15,
+      range: "0–5 km",
+      neighborhoods: [
+        "Al Rawabi",
+        "Al Nahdah",
+        "Al Rimal",
+        "Al Rayyan",
+        "Al Nadhim",
+        "Al Manar",
+      ],
+    },
+    {
+      fee: 20,
+      range: "6–10 km",
+      neighborhoods: [
+        "Al Yarmouk",
+        "Ishbiliyah",
+        "Al Rawdah",
+        "Al Hamra",
+        "Granada",
+        "Al Naseem East",
+        "Al Naseem West",
+        "Al Salam",
+        "Al Khaleej",
+        "Al Andalus",
+        "King Faisal",
+        "King Abdullah",
+        "Al Quds",
+        "Al Falah",
+        "Ash Shuhada",
+        "Al Qadisiyah",
+        "Al Munsiyah",
+        "Al Sharafeyyah",
+      ],
+    },
+    {
+      fee: 30,
+      range: "11–15 km",
+      neighborhoods: [
+        "Al Rabwah",
+        "Olaya",
+        "Al Malaz",
+        "Al Murabba",
+        "Al Sulimaniyah",
+        "Al Wizarat",
+        "Al Faruq",
+        "King AbdulAziz",
+        "Al Safa",
+        "Al Faisaliyah",
+        "Al Sulay",
+        "Qurtubah",
+        "Al Marwah",
+        "Al Mursalat",
+        "Jarir",
+        "Al Zahra",
+        "Al Mishal",
+        "Al Safarat",
+        "Al Fayha",
+        "Umm Al Hamam East",
+        "Umm Al Hamam West",
+        "Al Masani",
+      ],
+    },
+    {
+      fee: 35,
+      range: "16–20 km",
+      neighborhoods: [
+        "Al Yasmin",
+        "Al Nakheel",
+        "Hittin",
+        "Al Rahmaniyah",
+        "Al Narjis",
+        "Al Maather",
+        "Al Sahafa",
+        "Al Aqiq",
+        "Al Muruj",
+        "Al Mansourah",
+        "Al Muhamadiyyah",
+        "Al Wadi",
+        "Al Woroud",
+        "Al Ghadir",
+        "Al Urayja",
+        "Al Urayja West",
+        "Shubra",
+        "Dhahrat Laban",
+        "Al Masif",
+      ],
+    },
+    {
+      fee: 40,
+      range: "21–25 km",
+      neighborhoods: [
+        "Al Thumama",
+        "Diriyah",
+        "KAFD",
+        "Al Qirawan",
+        "Al Janadriyah",
+        "Al Hazm",
+        "Al Dar Al Baida",
+        "Irqah",
+        "Tuwaiq",
+        "Al Badiah",
+        "Al Suwaidi",
+        "Sultanah",
+        "Namar",
+        "Al Aziziyah",
+        "Al Manakh",
+        "Manfuhah",
+        "Al Batha",
+        "Ad Dirah",
+        "Utaiqah",
+        "Al Bujairi",
+        "Al Khalideya",
+        "Al Khuzama",
+        "Al Jazirah",
+        "Al Raid",
+        "Al Rafiah",
+        "As Saadah",
+        "As Salhiyah",
+        "Al Sinaiyah",
+        "Al Mutamarat",
+        "Al Maizilah",
+        "Al Mughrizat",
+        "Al Maather North",
+        "An Nada",
+        "An Nafal",
+        "An Namudhajiyah",
+        "Al Hada",
+        "Al Wahah",
+        "Al Wisham",
+        "Al Yamamah",
+        "Umm Salim",
+        "Salah Ad Din",
+        "Ghubairah",
+        "Al Izdihar",
+        "Al Iskan",
+        "Al Awali",
+        "King Fahd",
+        "Al Taawun",
+      ],
+    },
+    {
+      fee: 45,
+      range: "26–40 km",
+      neighborhoods: [
+        "Al Malqa",
+      ],
+    },
+  ],
+};
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { DELIVERY_CONFIG };
+}
