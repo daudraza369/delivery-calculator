@@ -42,10 +42,14 @@ Open `http://YOUR_SERVER_IP:8000` and complete onboarding.
 | Setting | Value |
 |---------|-------|
 | **Repository** | Public: `https://github.com/daudraza369/delivery-calculator` |
-| **Build Pack** | Nixpacks → **Static** |
+| **Build Pack** | **Dockerfile** (not Nixpacks; use repo's Dockerfile) |
 | **Base directory** | `/` |
 | **Web server** | Nginx |
 | **Domain** | Your domain or `http://YOUR_SERVER_IP` |
+
+**Note:** Two options:
+- **Option A (recommended):** Set Build Pack to **Dockerfile**. The repo includes a Dockerfile that copies from root.
+- **Option B:** If using Nixpacks Static, set **Publish Directory** to `/` (not `/dist`). The project has no `dist` folder.
 
 ### 3.3 Deploy
 
