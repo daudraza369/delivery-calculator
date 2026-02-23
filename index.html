@@ -134,12 +134,13 @@
       border: 1px solid #E5E5E5;
       border-top: 0;
       border-radius: 0 0 0.75rem 0.75rem;
-      max-height: min(200px, 50vh);
+      max-height: min(280px, 55vh);
       overflow-y: auto;
       box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
       z-index: 20;
       -webkit-overflow-scrolling: touch;
     }
+    .dark .place-dropdown { background: #262926; border-color: #404040; }
     .place-dropdown.hidden { display: none; }
     [dir="rtl"] .material-symbols-outlined.rtl-flip { transform: scaleX(-1); }
     .place-item {
@@ -148,9 +149,12 @@
       font-size: 0.95rem;
       border-bottom: 1px solid #f0f0f0;
       font-family: "Lato", sans-serif;
+      color: inherit;
     }
     .place-item:last-child { border-bottom: 0; }
     .place-item:hover { background: #F9F7F2; }
+    .dark .place-item { border-color: #404040; }
+    .dark .place-item:hover { background: #323532; }
     .place-item.loading { color: #9CA3AF; cursor: wait; animation: pulse 1s ease-in-out infinite; }
     @keyframes pulse { 50% { opacity: 0.6; } }
     body { min-height: 100dvh; min-height: 100vh; padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); overflow-x: hidden; }
@@ -180,41 +184,48 @@
 
     <main class="px-0">
       <div class="flex flex-col items-center justify-center mb-6 sm:mb-8">
-        <img src="DF — Favicon.png" alt="District Flowers" class="w-14 h-14 sm:w-16 sm:h-16 object-contain mb-3 sm:mb-4" />
-        <h1 class="text-2xl sm:text-3xl font-display font-medium text-text-main dark:text-white text-center px-2">
-          District <span class="italic text-logo">Flowers</span>
+        <img src="DF-Character Seal Submark-Lavender.svg" alt="District Flowers" class="w-20 h-20 sm:w-24 sm:h-24 object-contain mb-3 sm:mb-4" />
+        <h1 class="hidden text-2xl sm:text-3xl font-display font-medium text-text-main dark:text-white text-center px-2">
+          Delivery <span class="italic text-logo">Calculator</span>
         </h1>
-        <p class="text-xs text-text-muted mt-1 uppercase tracking-widest" data-ar="توصيل مميز" data-en="Premium Delivery">توصيل مميز</p>
+        <p class="text-xs text-text-muted mt-1 uppercase tracking-widest" data-ar="حاسبة التوصيل" data-en="Delivery Calculator">حاسبة التوصيل</p>
       </div>
 
       <div class="bg-surface-light dark:bg-surface-dark rounded-2xl sm:rounded-3xl shadow-card p-3 sm:p-6 md:p-8 mb-4 sm:mb-8">
         <h2 class="font-display text-lg sm:text-xl text-text-main dark:text-white mb-4 sm:mb-6" data-ar="تفاصيل التوصيل" data-en="Delivery Details">تفاصيل التوصيل</h2>
 
-        <button type="button" id="useLocationBtn" class="w-full flex items-center justify-center gap-2 bg-logo hover:bg-logo-dark text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 mb-4 sm:mb-6 group min-h-[48px] touch-manipulation">
+        <button type="button" id="useLocationBtn" class="hidden w-full flex items-center justify-center gap-2 bg-logo hover:bg-logo-dark text-white font-medium py-3 px-4 rounded-xl transition-all duration-300 mb-4 sm:mb-6 group min-h-[48px] touch-manipulation">
           <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">my_location</span>
           <span class="text-sm tracking-wide" data-ar="استخدم موقعي الحالي" data-en="Use my current location">استخدم موقعي الحالي</span>
         </button>
 
         <div class="relative mb-2">
           <div class="place-search-wrap relative">
-            <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent feed-placeholder" id="placeSearch" type="text" placeholder=" " autocomplete="off" data-placeholder-ar="اكتب المنطقة أو العنوان…" data-placeholder-en="Type area or address…"/>
-            <label class="floating-label absolute left-0 text-text-muted top-0" for="placeSearch" data-ar="المنطقة أو الحي" data-en="Area or District">المنطقة أو الحي</label>
+            <input class="floating-input w-full py-3 pe-10 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent feed-placeholder" id="placeSearch" type="text" placeholder=" " autocomplete="off" data-placeholder-ar="اختر أو ابحث…" data-placeholder-en="Select or search…"/>
+            <label class="floating-label absolute left-0 text-text-muted top-0" for="placeSearch" data-ar="الحي" data-en="District">الحي</label>
+            <span class="place-dropdown-arrow material-symbols-outlined absolute end-0 top-3 text-text-muted pointer-events-none">expand_more</span>
             <div class="place-dropdown hidden" id="placeDropdown"></div>
           </div>
         </div>
 
         <div class="flex items-center justify-between gap-2 text-xs text-text-muted mb-4 sm:mb-6 px-1 min-w-0" id="feeRow">
-          <span class="flex items-center gap-1 min-w-0 flex-1" id="distSpan">
+          <span class="flex items-center gap-1.5 min-w-0 flex-1" id="distSpan">
             <span class="material-symbols-outlined text-sm shrink-0">straighten</span>
             <span id="distText" class="truncate" data-ar="اكتب منطقتك أو استخدم الموقع" data-en="Type your area or use location">اكتب منطقتك أو استخدم الموقع</span>
+            <span id="storeIconWrap" class="hidden shrink-0 inline-flex items-center" data-title-ar="من محلنا إلى عنوانك" data-title-en="From our store to your place">
+              <a href="https://maps.app.goo.gl/tjb7qCnRVYFwKdWp7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-2 py-1 rounded-lg bg-text-muted/10 text-text-muted hover:text-logo hover:bg-logo/15 border border-dotted border-text-muted/40 hover:border-logo/60 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-logo focus:ring-offset-1" aria-label="View our location on map" title="View our location on Maps">
+                <span class="material-symbols-outlined text-base">store</span>
+              </a>
+            </span>
           </span>
           <span class="font-bold text-primary text-sm shrink-0" id="feeText">—</span>
         </div>
 
         <div class="bg-accent-yellow dark:bg-yellow-900/10 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 border border-yellow-100 dark:border-yellow-900/20 flex gap-2 sm:gap-3 items-start">
-          <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-500 text-lg mt-0.5">info</span>
-          <div>
-            <p class="text-xs text-yellow-800 dark:text-yellow-200 leading-relaxed font-medium" data-ar="الطلبات بعد ٤ عصراً تُجدول لليوم التالي" data-en="Orders placed after 4:00 PM will be scheduled for the next day delivery.">الطلبات بعد ٤ عصراً تُجدول لليوم التالي</p>
+          <span class="material-symbols-outlined text-yellow-600 dark:text-yellow-500 text-lg mt-0.5 shrink-0">info</span>
+          <div class="space-y-1">
+            <p class="text-xs text-yellow-800 dark:text-yellow-200 leading-relaxed font-medium" data-ar="الطلبات بعد ٤ عصراً تُجدول لليوم التالي" data-en="Orders placed after 4:00 PM will be scheduled for next day delivery.">الطلبات بعد ٤ عصراً تُجدول لليوم التالي</p>
+            <p class="text-xs text-yellow-800 dark:text-yellow-200 leading-relaxed font-medium" data-ar="*التوصيل ذو الأولوية يخضع لرسوم إضافية ٧ ر.س" data-en="*Priority Delivery subject to additional SAR 7">*التوصيل ذو الأولوية يخضع لرسوم إضافية ٧ ر.س</p>
           </div>
         </div>
 
@@ -226,23 +237,23 @@
 
           <div class="relative">
             <select class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary bg-transparent appearance-none pe-8" id="timeSlot">
-              <option value="" id="timeSlotPlaceholder">—</option>
+              <option value="" id="timeSlotPlaceholder">Select priority</option>
             </select>
-            <label class="floating-label absolute left-0 text-text-muted top-0" for="timeSlot" data-ar="الوقت المفضل" data-en="Preferred Time">الوقت المفضل</label>
+            <label class="floating-label absolute left-0 text-text-muted top-0" for="timeSlot" data-ar="توصيل ذو أولوية" data-en="Priority Delivery">توصيل ذو أولوية</label>
             <span class="material-symbols-outlined absolute end-0 top-3 text-text-muted pointer-events-none">expand_more</span>
           </div>
 
-          <div class="relative">
+          <div class="relative hidden">
             <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent" id="name" type="text" placeholder=" "/>
             <label class="floating-label absolute left-0 text-text-muted top-0" for="name" data-ar="اسمك" data-en="Your Name">اسمك</label>
           </div>
 
-          <div class="relative">
+          <div class="relative hidden">
             <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent" id="phone" type="tel" placeholder=" " data-placeholder-ar="05xxxxxxxx" data-placeholder-en="05xxxxxxxx"/>
             <label class="floating-label absolute left-0 text-text-muted top-0" for="phone" data-ar="رقم الواتساب" data-en="WhatsApp Number">رقم الواتساب</label>
           </div>
 
-          <div class="relative">
+          <div class="relative hidden">
             <input class="floating-input w-full py-3 text-text-main dark:text-white border-border-color focus:border-primary placeholder-transparent" id="address" type="text" placeholder=" " data-placeholder-ar="الشارع، المبنى، الطابق" data-placeholder-en="Street, Building, Flat"/>
             <label class="floating-label absolute left-0 text-text-muted top-0" for="address" data-ar="الشارع، المبنى، الطابق" data-en="Street, Building, Flat">الشارع، المبنى، الطابق</label>
           </div>
@@ -250,7 +261,7 @@
 
         <div class="mt-6 sm:mt-8">
           <button type="button" id="submitBtn" disabled class="w-full bg-logo hover:bg-logo-dark text-white font-bold py-3 sm:py-4 rounded-xl shadow-soft flex items-center justify-center gap-2 transform transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-logo min-h-[48px] text-sm sm:text-base touch-manipulation">
-            <span class="font-display tracking-wide" data-ar="تأكيد التوصيل" data-en="Confirm Delivery">تأكيد التوصيل</span>
+            <span class="font-display tracking-wide" data-ar="تأكيد تكلفة التوصيل" data-en="Confirm Cost of Delivery">تأكيد تكلفة التوصيل</span>
             <span class="material-symbols-outlined text-sm">arrow_forward</span>
           </button>
         </div>
@@ -316,7 +327,7 @@
         el.placeholder = el.dataset['placeholder' + (l === 'ar' ? 'Ar' : 'En')] || ' ';
       });
       const ph = document.getElementById('timeSlotPlaceholder');
-      if (ph) ph.textContent = l === 'ar' ? '— اختر الوقت —' : '— Select time —';
+      if (ph) ph.textContent = l === 'ar' ? 'اختر الأولوية' : 'Select priority';
       const ps = document.getElementById('placeSearch');
       if (ps) ps.placeholder = ' ';
       updateFeeDisplay();
@@ -326,21 +337,29 @@
     function updateFeeDisplay() {
       const distText = document.getElementById('distText');
       const feeText = document.getElementById('feeText');
-      const row = document.getElementById('feeRow');
+      const storeIconWrap = document.getElementById('storeIconWrap');
       if (!selectedZone) {
         distText.textContent = t('placeholder');
+        storeIconWrap.classList.add('hidden');
         feeText.textContent = '—';
         feeText.classList?.remove('!text-red-600');
         return;
       }
       if (selectedZone.fee === null) {
-        distText.textContent = lastKm != null ? `${Math.round(lastKm * 10) / 10} km ${t('fromHub')}` : t('outside');
+        distText.textContent = lastKm != null ? `${Math.round(lastKm * 10) / 10} km` : t('outside');
+        storeIconWrap.classList.toggle('hidden', lastKm == null);
+        if (lastKm != null) storeIconWrap.title = storeIconWrap.dataset['title' + (lang === 'ar' ? 'Ar' : 'En')];
         feeText.textContent = lang === 'ar' ? 'خارج المنطقة' : 'Outside zone';
         feeText.classList?.add('!text-red-600');
       } else {
-        const kmStr = lastKm != null ? `${Math.round(lastKm * 10) / 10} km ${t('fromHub')}` : selectedZone.range + ' ' + t('fromHub');
+        const kmStr = lastKm != null ? `${Math.round(lastKm * 10) / 10} km` : selectedZone.range;
         distText.textContent = kmStr;
-        feeText.textContent = selectedZone.fee + ' SAR ' + (lang === 'ar' ? 'توصيل' : 'Delivery');
+        storeIconWrap.classList.remove('hidden');
+        storeIconWrap.title = storeIconWrap.dataset['title' + (lang === 'ar' ? 'Ar' : 'En')];
+        const timeVal = document.getElementById('timeSlot')?.value || '';
+        const isPriority = timeVal && timeVal !== 'standard';
+        const totalFee = selectedZone.fee + (isPriority ? 7 : 0);
+        feeText.textContent = totalFee + ' SAR ' + (lang === 'ar' ? 'توصيل' : 'Delivery');
         feeText.classList?.remove('!text-red-600');
       }
     }
@@ -356,10 +375,13 @@
       const zone = selectedZone && selectedZone.fee != null;
       const date = !!document.getElementById('deliveryDate').value;
       const time = !!document.getElementById('timeSlot').value;
-      const name = !!document.getElementById('name').value.trim();
-      const phone = !!document.getElementById('phone').value.trim() && isValidPhone(document.getElementById('phone').value.trim());
-      const address = !!document.getElementById('address').value.trim();
-      document.getElementById('submitBtn').disabled = !(zone && date && time && name && phone && address);
+      const nameEl = document.getElementById('name');
+      const phoneEl = document.getElementById('phone');
+      const addressEl = document.getElementById('address');
+      const nameOk = nameEl.closest('.relative')?.classList.contains('hidden') ? true : !!nameEl.value.trim();
+      const phoneOk = phoneEl.closest('.relative')?.classList.contains('hidden') ? true : (!!phoneEl.value.trim() && isValidPhone(phoneEl.value.trim()));
+      const addressOk = addressEl.closest('.relative')?.classList.contains('hidden') ? true : !!addressEl.value.trim();
+      document.getElementById('submitBtn').disabled = !(zone && date && time && nameOk && phoneOk && addressOk);
     }
 
     function getShortPlaceName(item) {
@@ -413,35 +435,46 @@
       });
     }
 
-    function searchCuratedList(q) {
+    function getAllCuratedDistricts() {
       const flat = [];
       config.zones.forEach(z => z.neighborhoods.forEach(n => flat.push({ name: n, fee: z.fee, range: z.range })));
-      const key = q.toLowerCase().trim();
-      return flat.filter(x => x.name.toLowerCase().includes(key));
+      return flat;
+    }
+    function searchCuratedList(q) {
+      const key = (q || '').toLowerCase().trim();
+      const all = getAllCuratedDistricts();
+      return key ? all.filter(x => x.name.toLowerCase().includes(key)) : all;
+    }
+
+    function renderCuratedDropdown(curated) {
+      placeDropdown.innerHTML = '';
+      placeDropdown.classList.remove('hidden');
+      const items = curated.slice(0, 50);
+      items.forEach((c) => {
+        const li = document.createElement('div');
+        li.className = 'place-item';
+        li.textContent = c.name;
+        li.addEventListener('click', () => {
+          const zone = { fee: c.fee, range: c.range, name: c.name };
+          showFee(zone, zone, null);
+          document.getElementById('placeSearch').value = c.name;
+          document.getElementById('placeSearch').classList.remove('feed-placeholder');
+          placeDropdown.classList.add('hidden');
+          placeDropdown.innerHTML = '';
+          saveForm();
+        });
+        placeDropdown.appendChild(li);
+      });
     }
 
     async function searchPlaces(q) {
-      if (!q || q.length < 2) { placeDropdown.classList.add('hidden'); return; }
       const curated = searchCuratedList(q);
       if (curated.length > 0) {
-        const items = curated.slice(0, 8).map(c => ({ isCurated: true, name: c.name, fee: c.fee, range: c.range }));
-        placeDropdown.innerHTML = '';
-        placeDropdown.classList.remove('hidden');
-        items.forEach((c) => {
-          const li = document.createElement('div');
-          li.className = 'place-item';
-          li.textContent = c.name;
-          li.addEventListener('click', () => {
-            const zone = { fee: c.fee, range: c.range, name: c.name };
-            showFee(zone, zone, null);
-            document.getElementById('placeSearch').value = c.name;
-            document.getElementById('placeSearch').classList.remove('feed-placeholder');
-            placeDropdown.classList.add('hidden');
-            placeDropdown.innerHTML = '';
-            saveForm();
-          });
-          placeDropdown.appendChild(li);
-        });
+        renderCuratedDropdown(curated);
+        return;
+      }
+      if (!q || q.length < 2) {
+        placeDropdown.classList.add('hidden');
         return;
       }
       const query = q.trim() + ', الرياض, السعودية';
@@ -470,21 +503,18 @@
     document.getElementById('placeSearch').addEventListener('input', () => {
       clearTimeout(searchTimeout);
       const q = document.getElementById('placeSearch').value.trim();
-      if (q.length < 2) {
-        placeDropdown.classList.add('hidden');
-        placeDropdown.innerHTML = '';
+      if (q.length === 0) {
         selectedZone = null;
         lastKm = null;
         updateFeeDisplay();
         updateSubmitButton();
-        return;
       }
-      searchTimeout = setTimeout(() => searchPlaces(q), 300);
+      searchTimeout = setTimeout(() => searchPlaces(q), q.length >= 2 ? 300 : 0);
     });
 
     document.getElementById('placeSearch').addEventListener('focus', () => {
       const q = document.getElementById('placeSearch').value.trim();
-      if (q.length >= 2 && placeDropdown.children.length) placeDropdown.classList.remove('hidden');
+      searchPlaces(q);
     });
 
     document.addEventListener('click', (e) => {
@@ -553,6 +583,13 @@
       );
     });
 
+    const stdLabel = config.standardDeliveryLabel || { ar: 'توصيل عادي', en: 'Standard Delivery' };
+    const stdOpt = document.createElement('option');
+    stdOpt.value = 'standard';
+    stdOpt.setAttribute('data-ar', stdLabel.ar);
+    stdOpt.setAttribute('data-en', stdLabel.en);
+    stdOpt.textContent = lang === 'ar' ? stdLabel.ar : stdLabel.en;
+    document.getElementById('timeSlot').appendChild(stdOpt);
     config.timeSlots.forEach(slot => {
       const opt = document.createElement('option');
       opt.value = slot;
@@ -563,6 +600,7 @@
     document.getElementById('timeSlot').addEventListener('change', function() {
       this.classList.toggle('has-value', !!this.value);
       saveForm();
+      updateFeeDisplay();
       updateSubmitButton();
     });
 
@@ -639,16 +677,25 @@
       const address = document.getElementById('address').value.trim();
       const areaName = document.getElementById('placeSearch').value.trim() || zone.name;
 
-      const alerts = lang === 'ar' ? { date: 'اختر تاريخ التوصيل', time: 'اختر وقت التوصيل', name: 'اكتب اسمك', phone: 'اكتب رقم الواتساب', address: 'اكتب عنوان التوصيل', phoneInvalid: 'رقم غير صحيح. استخدم 05xxxxxxxx' } : { date: 'Please select a delivery date.', time: 'Please select a time window.', name: 'Please enter your name.', phone: 'Please enter your WhatsApp number.', address: 'Please enter your delivery address.', phoneInvalid: 'Invalid number. Use 05xxxxxxxx' };
+      const nameHidden = document.getElementById('name').closest('.relative')?.classList.contains('hidden');
+      const phoneHidden = document.getElementById('phone').closest('.relative')?.classList.contains('hidden');
+      const addressHidden = document.getElementById('address').closest('.relative')?.classList.contains('hidden');
+      const alerts = lang === 'ar' ? { date: 'اختر تاريخ التوصيل', time: 'اختر الأولوية', name: 'اكتب اسمك', phone: 'اكتب رقم الواتساب', address: 'اكتب عنوان التوصيل', phoneInvalid: 'رقم غير صحيح. استخدم 05xxxxxxxx' } : { date: 'Please select a delivery date.', time: 'Please select priority delivery.', name: 'Please enter your name.', phone: 'Please enter your WhatsApp number.', address: 'Please enter your delivery address.', phoneInvalid: 'Invalid number. Use 05xxxxxxxx' };
       if (!date) { alert(alerts.date); return; }
       if (!time) { alert(alerts.time); return; }
-      if (!name) { alert(alerts.name); return; }
-      if (!phone) { alert(alerts.phone); return; }
-      if (!isValidPhone(phone)) { alert(alerts.phoneInvalid); return; }
-      if (!address) { alert(alerts.address); return; }
+      if (!nameHidden && !name) { alert(alerts.name); return; }
+      if (!phoneHidden && !phone) { alert(alerts.phone); return; }
+      if (!phoneHidden && phone && !isValidPhone(phone)) { alert(alerts.phoneInvalid); return; }
+      if (!addressHidden && !address) { alert(alerts.address); return; }
 
-      const msgEn = `Hi! I'd like to confirm my delivery request:\n\nArea: ${areaName}\nDelivery fee: ${zone.fee} SAR\nDate: ${date}\nTime: ${time}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
-      const msgAr = `السلام عليكم، أود تأكيد طلب التوصيل:\n\nالمنطقة: ${areaName}\nرسوم التوصيل: ${zone.fee} ر.س\nالتاريخ: ${date}\nالوقت: ${time}\nالاسم: ${name}\nالواتساب: ${phone}\nالعنوان: ${address}`;
+      const isPriority = time && time !== 'standard';
+      const totalFee = zone.fee + (isPriority ? 7 : 0);
+      const stdLabel = config.standardDeliveryLabel || { ar: 'توصيل عادي', en: 'Standard Delivery' };
+      const priorityLabel = time === 'standard' ? (lang === 'ar' ? stdLabel.ar : stdLabel.en) : time;
+      const extra = (name || phone || address) ? `\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}` : '';
+      const extraAr = (name || phone || address) ? `\n\nالاسم: ${name}\nالواتساب: ${phone}\nالعنوان: ${address}` : '';
+      const msgEn = `I agree to these delivery fees and would like to proceed with choosing my flowers.\n\nDistrict: ${areaName}\nDate: ${date}\nPriority: ${priorityLabel}\nDelivery Fee: ${totalFee} SAR${extra}`;
+      const msgAr = `أوافق على رسوم التوصيل هذه وأود المتابعة لاختيار الورد.\n\nالحي: ${areaName}\nالتاريخ: ${date}\nالأولوية: ${priorityLabel}\nرسوم التوصيل: ${totalFee} ر.س${extraAr}`;
       const msg = lang === 'ar' ? msgAr : msgEn;
       window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     });
@@ -656,6 +703,7 @@
     setLang('ar');
     restoreForm();
     updateSubmitButton();
+
   </script>
 </body>
 </html>

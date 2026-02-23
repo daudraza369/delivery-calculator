@@ -17,6 +17,7 @@ const DELIVERY_CONFIG = {
   // Riyadh bounding box for Nominatim (lon1,lat1,lon2,lat2) – restricts search to Riyadh
   riyadhViewbox: "46.4,24.4,47.2,25.4",
 
+  standardDeliveryLabel: { ar: "توصيل عادي", en: "Standard Delivery" },
   timeSlots: [
     "10:00 AM – 1:00 PM",
     "1:00 PM – 4:00 PM",
