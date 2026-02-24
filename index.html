@@ -271,12 +271,12 @@
   <script src="config.js"></script>
   <script>
     const config = typeof DELIVERY_CONFIG !== 'undefined' ? DELIVERY_CONFIG : {
-      whatsappNumber: "966500000000",
+      whatsappNumber: "966562288177",
       hubCoordinates: { lat: 24.695074, lng: 46.792129 },
       roadFactor: 1.3,
       riyadhViewbox: "46.4,24.4,47.2,25.4",
       timeSlots: ["10:00 AM – 1:00 PM", "1:00 PM – 4:00 PM", "9:00 PM – 12:00 AM"],
-      zones: [{ fee: 15, range: "0–5 km", neighborhoods: ["Al Rawabi"] }, { fee: 20, range: "6–10 km", neighborhoods: ["Al Yarmouk"] }],
+      zones: [{ fee: 15, range: "0–5 km", neighborhoods: [{ en: "Al Rawabi", ar: "الروابي" }] }, { fee: 20, range: "6–10 km", neighborhoods: [{ en: "Al Yarmouk", ar: "اليرموك" }] }],
       backUrl: "",
     };
 
@@ -328,6 +328,9 @@
       if (ph) ph.textContent = l === 'ar' ? 'اختر الأولوية' : 'Select priority';
       const ps = document.getElementById('placeSearch');
       if (ps) ps.placeholder = ' ';
+      if (ps.dataset.distEn || ps.dataset.distAr) {
+        ps.value = l === 'ar' ? (ps.dataset.distAr || ps.dataset.distEn || '') : (ps.dataset.distEn || ps.dataset.distAr || '');
+      }
       updateFeeDisplay();
       document.getElementById('langToggle').textContent = l === 'ar' ? 'عربي / EN' : 'EN / عربي';
     }
@@ -422,8 +425,13 @@
           const straightKm = haversine(hub.lat, hub.lng, parseFloat(item.lat), parseFloat(item.lon));
           const km = straightKm * roadFactor;
           const zone = distanceToZone(km);
-          showFee(zone, zone ? { ...zone, name: shortName } : { fee: null, name: shortName }, km);
-          document.getElementById('placeSearch').value = shortName;
+          const matched = getAllCuratedDistricts().find(d => d.name.toLowerCase() === shortName.toLowerCase() || (d.nameAr && d.nameAr === shortName));
+          const distEn = matched ? matched.name : shortName;
+          const distAr = matched ? (matched.nameAr || shortName) : shortName;
+          showFee(zone, zone ? { ...zone, name: distEn, nameAr: distAr } : { fee: null, name: distEn, nameAr: distAr }, km);
+          document.getElementById('placeSearch').value = lang === 'ar' ? (distAr || shortName) : (distEn || shortName);
+          document.getElementById('placeSearch').dataset.distEn = distEn || '';
+          document.getElementById('placeSearch').dataset.distAr = distAr || '';
           document.getElementById('placeSearch').classList.remove('feed-placeholder');
           placeDropdown.classList.add('hidden');
           placeDropdown.innerHTML = '';
@@ -435,13 +443,20 @@
 
     function getAllCuratedDistricts() {
       const flat = [];
-      config.zones.forEach(z => z.neighborhoods.forEach(n => flat.push({ name: n, fee: z.fee, range: z.range })));
+      config.zones.forEach(z => z.neighborhoods.forEach(n => {
+        const item = typeof n === 'object' ? { name: n.en, nameAr: n.ar, fee: z.fee, range: z.range } : { name: n, nameAr: n, fee: z.fee, range: z.range };
+        flat.push(item);
+      }));
       return flat;
     }
     function searchCuratedList(q) {
       const key = (q || '').toLowerCase().trim();
+      const keyAr = (q || '').trim();
       const all = getAllCuratedDistricts();
-      return key ? all.filter(x => x.name.toLowerCase().includes(key)) : all;
+      return key ? all.filter(x =>
+        (x.name && x.name.toLowerCase().includes(key)) ||
+        (x.nameAr && x.nameAr.includes(keyAr))
+      ) : all;
     }
 
     function renderCuratedDropdown(curated) {
@@ -451,11 +466,14 @@
       items.forEach((c) => {
         const li = document.createElement('div');
         li.className = 'place-item';
-        li.textContent = c.name;
+        li.textContent = lang === 'ar' ? (c.nameAr || c.name) : c.name;
         li.addEventListener('click', () => {
-          const zone = { fee: c.fee, range: c.range, name: c.name };
+          const displayName = lang === 'ar' ? (c.nameAr || c.name) : c.name;
+          const zone = { fee: c.fee, range: c.range, name: c.name, nameAr: c.nameAr };
           showFee(zone, zone, null);
-          document.getElementById('placeSearch').value = c.name;
+          document.getElementById('placeSearch').value = displayName;
+          document.getElementById('placeSearch').dataset.distEn = c.name || '';
+          document.getElementById('placeSearch').dataset.distAr = c.nameAr || '';
           document.getElementById('placeSearch').classList.remove('feed-placeholder');
           placeDropdown.classList.add('hidden');
           placeDropdown.innerHTML = '';
@@ -565,9 +583,13 @@
           const straightKm = haversine(hub.lat, hub.lng, pos.coords.latitude, pos.coords.longitude);
           const km = straightKm * roadFactor;
           const zone = distanceToZone(km);
-          showFee(zone, zone ? { ...zone, name: lang === 'ar' ? 'الموقع الحالي' : 'Detected location' } : null, km);
-          document.getElementById('placeSearch').value = lang === 'ar' ? 'الموقع الحالي' : 'Detected location';
-          document.getElementById('placeSearch').classList.remove('feed-placeholder');
+          const locEn = 'Detected location', locAr = 'الموقع الحالي';
+          showFee(zone, zone ? { ...zone, name: locEn, nameAr: locAr } : null, km);
+          const psLoc = document.getElementById('placeSearch');
+          psLoc.value = lang === 'ar' ? locAr : locEn;
+          psLoc.dataset.distEn = locEn;
+          psLoc.dataset.distAr = locAr;
+          psLoc.classList.remove('feed-placeholder');
           placeDropdown.classList.add('hidden');
           saveForm();
           btn.disabled = false;
@@ -605,8 +627,11 @@
     const STORAGE_KEY = 'df_delivery_form';
     function saveForm() {
       try {
+        const ps = document.getElementById('placeSearch');
         const data = {
-          area: document.getElementById('placeSearch').value.trim(),
+          area: ps.value.trim(),
+          areaEn: ps.dataset.distEn || '',
+          areaAr: ps.dataset.distAr || '',
           date: document.getElementById('deliveryDate').value,
           time: document.getElementById('timeSlot').value,
           name: document.getElementById('name').value.trim(),
@@ -623,15 +648,22 @@
         const data = JSON.parse(raw);
         const today = new Date().toISOString().slice(0, 10);
         if (data.area) {
-          document.getElementById('placeSearch').value = data.area;
-          document.getElementById('placeSearch').classList.remove('feed-placeholder');
+          const ps = document.getElementById('placeSearch');
           const curated = searchCuratedList(data.area);
           if (curated.length > 0) {
             const c = curated[0];
-            selectedZone = { fee: c.fee, range: c.range, name: c.name };
+            selectedZone = { fee: c.fee, range: c.range, name: c.name, nameAr: c.nameAr };
             lastKm = null;
-            updateFeeDisplay();
+            ps.dataset.distEn = c.name || '';
+            ps.dataset.distAr = c.nameAr || '';
+            ps.value = lang === 'ar' ? (c.nameAr || c.name) : c.name;
+          } else {
+            ps.value = data.area;
+            if (data.areaEn) ps.dataset.distEn = data.areaEn;
+            if (data.areaAr) ps.dataset.distAr = data.areaAr;
           }
+          ps.classList.remove('feed-placeholder');
+          updateFeeDisplay();
         }
         if (data.date && data.date >= today) document.getElementById('deliveryDate').value = data.date;
         if (data.time) {
