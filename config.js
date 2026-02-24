@@ -21,7 +21,7 @@ const DELIVERY_CONFIG = {
   timeSlots: [
     "10:00 AM – 1:00 PM",
     "1:00 PM – 4:00 PM",
-    "4:00 PM – 7:00 PM",
+    "9:00 PM – 12:00 AM",
   ],
 
   // Zones: fee in SAR, neighborhoods in that zone (ordered by approximate distance from Al Rawabi)
